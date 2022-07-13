@@ -1,6 +1,6 @@
 import 'react-native-gesture-handler';
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, } from 'react-native';
+import { StyleSheet, View, Text} from 'react-native';
 import Animated,{ 
   useSharedValue, 
   useAnimatedStyle, 
@@ -22,7 +22,7 @@ const SWIPE_VELOCITY = 800;
 
 
 const AnimatedStack = (props) => {
-    const { data, renderItem } = props;
+    const { data, renderItem, onSwipeRight, onSwipeLeft } = props;
 
 const [currentIndex, setCurrentIndex] = useState(0);
 const [NextIndex, setNextIndex] = useState(currentIndex + 1);
@@ -103,6 +103,9 @@ const gestureHandler = useAnimatedGestureHandler({
       {},
       () =>     runOnJS(setCurrentIndex)(currentIndex + 1)
     );
+
+    const onSwipe = event.velocityX > 0 ? onSwipeRight : onSwipeLeft;
+    onSwipe && runOnJS(onSwipe)(currentProfile);
   },
 });
 
@@ -111,20 +114,23 @@ useEffect(() => {
   setNextIndex(currentIndex + 1)
 }, [currentIndex])
 
+
   return (
+
     <View style={styles.root}>
       {nextProfile && (
         <View style={styles.nextProfile}>
           <Animated.View style={[styles.animatedstyles, NextCMstyle]}>       
             {renderItem({ item: nextProfile})}
           </Animated.View>
-        </View>
+    </View>
 )}
 {currentProfile && (
+ 
       <PanGestureHandler onGestureEvent={gestureHandler}>
         <Animated.View style={[styles.animatedstyles, CMstyle]}>
-          <Animated.Image source={birdie} style={[styles.birdie, {left: 10}, birdieStyle]} />
-          <Animated.Image source={boogie} style={[styles.birdie, {right: 10}, boogieStyle]} />
+          <Animated.Image source={birdie} style={[styles.birdie, birdieStyle]} />
+          <Animated.Image source={boogie} style={[styles.birdie, boogieStyle]} />
           {renderItem({ item: currentProfile})}
         </Animated.View>
       </PanGestureHandler>
@@ -140,6 +146,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     width: '100%',
     height: '100%',
+    backgroundColor: 'red'
   },
   animatedstyles: {
     flex: 1,
@@ -156,7 +163,7 @@ const styles = StyleSheet.create({
   birdie: {
     width: '30%',
     height: '10%',
-    bottom: 10,
+    bottom: 5,
   }
   
 });

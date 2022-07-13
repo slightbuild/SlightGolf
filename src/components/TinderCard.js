@@ -30,11 +30,11 @@ const styles = StyleSheet.create({
        
       },
       card: {
-        height: '55%',
-        width: '75%',
+        height: '65%',
+        width: '85%',
         backgroundColor: '#fefefe',
         borderRadius: 10,
-        marginBottom: 50, 
+        marginBottom: 150, 
     
         shadowColor: '#000',
         shadowOffset: {
