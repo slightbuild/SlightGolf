@@ -5,28 +5,28 @@ import userdata from '../../assets/data/userdata';
 const MatchScreen = () => {
   return (
     <SafeAreaView style={styles.root}>
-        <View style={styles.continer}>
-        <Text>MatchScreen</Text>
-            <View style={styles.users}>
-                {userdata.map(user => (
+        <View style={styles.container}>
+            <Text style={{fontWeight: 'bold', fontSize: 24, color: 'black'}}>Matches</Text>
+                <View style={styles.users}>
+                    {userdata.map(user => (
                 <View style={styles.user} key={user.id}>
                     <Image source={{ uri: user.image}} style={styles.image} />
-                </View>
+                </View> 
                 ))}
             </View>       
         </View>    
     </SafeAreaView>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
     root: {
         width: '100%',
-        flex: 1,
-        padding: 10,
+        height: '100%',
+        
     },
-    continer: {
-        padding: 10,
+    container: {
+        paddingLeft: 30,
     }, 
     image: {
         width: '100%',
@@ -41,10 +41,10 @@ const styles = StyleSheet.create({
         margin: 10,
     },
     users: {
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-
+        flexDirection: 'column',
+        paddingTop: 10,
     }
-})
+
+});
 
 export default MatchScreen

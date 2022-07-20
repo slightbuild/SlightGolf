@@ -4,7 +4,7 @@ import React from 'react'
 const TinderCard = props => {
     const {name, image, desc} = props.user
   return (
-        <View style={styles.card}>
+      <View style={styles.card}>
           <ImageBackground source={{
             uri: image}}
               style={styles.img}>
@@ -12,6 +12,7 @@ const TinderCard = props => {
                 <Text style={styles.desc}>{desc}</Text>
           </ImageBackground>
         </View>
+
   )
 }
 
@@ -34,7 +35,7 @@ const styles = StyleSheet.create({
         width: '85%',
         backgroundColor: '#fefefe',
         borderRadius: 10,
-        marginBottom: 150, 
+        marginBottom: 140, 
     
         shadowColor: '#000',
         shadowOffset: {
